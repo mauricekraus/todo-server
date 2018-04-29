@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 let db = require('./config/db');
 
 const app = express();
-const port = 8000;
+const port = 8080;
 
 nconf.argv().env().file('keys.json');
 const user = nconf.get('mongoUser');
