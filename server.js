@@ -16,7 +16,6 @@ const mongoPort = nconf.get('mongoPort');
 const database = nconf.get('mongoDatabase');
 
 let uri = `mongodb://${user}:${pass}@${host}:${mongoPort}/${database}`;
-console.log(uri);
 
 app.use(bodyParser.urlencoded({ extended: true}));
 MongoClient.connect(uri, (err, database) => {
