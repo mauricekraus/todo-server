@@ -58,4 +58,4 @@ typings/
 .env
 
 # db
-/config/db.js
+keys.json
