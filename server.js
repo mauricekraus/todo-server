@@ -17,6 +17,14 @@ const database = nconf.get('mongoDatabase');
 
 let uri = `mongodb://${user}:${pass}@${host}:${mongoPort}/${database}`;
 
+app.use(function(request, response, next) {
+    response.header("Access-Control-Allow-Origin", request.headers.origin);
+    response.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    response.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT,DELETE,OPTIONS");
+    response.header("Access-Control-Allow-Credentials", "true");
+    next();
+});
+
 app.use(bodyParser.urlencoded({ extended: true}));
 MongoClient.connect(uri, (err, database) => {
     if (err) {
