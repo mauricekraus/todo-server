@@ -30,7 +30,10 @@ module.exports = function(app, db) {
   app.put("/notes/:id", (req, res) => {
     const id = req.params.id;
     const noteId = { _id: new ObjectID(id) };
-    const newNote = { text: req.body.text, title: req.body.title };
+    const newNote = {
+      title: req.body.title,
+      completed: JSON.parse(req.body.completed)
+    };
     db.collection("notes").update(noteId, newNote, (err, result) => {
       if (err) {
         res.send({ error: "Could not update id: " + id });
@@ -54,7 +57,7 @@ module.exports = function(app, db) {
 
   app.post("/notes", (req, res) => {
     // You'll create your todo here.
-    const note = { text: req.body.text, title: req.body.title };
+    const note = { title: req.body.title, completed: false };
     db.collection("notes").insert(note, (err, result) => {
       if (err) {
         res.send({ error: "Could not create entry" });
