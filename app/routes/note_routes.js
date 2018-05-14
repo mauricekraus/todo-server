@@ -56,7 +56,6 @@ module.exports = function(app, db) {
   });
 
   app.post("/notes", (req, res) => {
-    // You'll create your todo here.
     const note = { title: req.body.title, completed: false };
     db.collection("notes").insert(note, (err, result) => {
       if (err) {
